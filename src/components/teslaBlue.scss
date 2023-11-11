@@ -214,6 +214,11 @@
       position: relative;
       top: 115px;
 
+      .solorVideo {
+        width: 500px;
+        height: 500px;
+      }
+
       .backCar {
         position: relative;
         right: 110px;
@@ -377,4 +382,14 @@
     left: 150px;
     bottom: 250px;
   }
+}
+
+.modalMsg {
+  width: 500px;
+  height: 500px;
+  background: red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
 }

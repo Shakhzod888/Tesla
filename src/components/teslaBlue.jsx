@@ -7,6 +7,17 @@ import "@mantine/carousel/styles.css";
 import { Carousel } from "@mantine/carousel";
 import { IconArrowRight, IconArrowLeft } from "@tabler/icons-react";
 import { useState } from "react";
+import { useSpring, animated } from "react-spring";
+import { Flex } from "@mantine/core";
+function Number({ n }) {
+  const { number } = useSpring({
+    from: { number: 0 },
+    number: n,
+    delay: 100,
+    config: { mass: 1, tension: 20, friction: 10 },
+  });
+  return <animated.div>{number.to((n) => n.toFixed(0))}</animated.div>;
+}
 
 function TeslaBlue() {
   const [count, setCount] = useState(1);
@@ -81,7 +92,7 @@ function TeslaBlue() {
         </div>
         <div className="headerLinks">
           <button className={` ${count === 1 ? "activeLinkBlue" : ""}`}>
-            Model 5
+            Model S
           </button>
           <button className={` ${count === 2 ? "activeLinkRed" : ""}`}>
             Model 3
@@ -219,6 +230,8 @@ function TeslaBlue() {
           </div>
         </div>
       </header>
+      {/* <div className="modalMsg"></div> */}
+
       <div className="carsconatiner">
         <Carousel
           height={180}
@@ -281,28 +294,83 @@ function TeslaBlue() {
               </div>
             </div>
           </Carousel.Slide>
+          {/* <Carousel.Slide>
+            <AspectRatio ratio={16 / 9}>
+              <iframe
+                src="https://digitalassets.tesla.com/tesla-contents/video/upload/f_auto,q_auto:best/425_Savings_D.mp4"
+                title="YouTube video player"
+                style={{ border: 0 }}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </AspectRatio>
+          </Carousel.Slide> */}
         </Carousel>
       </div>
 
       <div className="footerLinks">
         <div className="carInfo">
           <div>
-            <p className="carInfo1">396 mi</p>
+            <Flex justify={"center"} direction={"row"}>
+              <p className="carInfo1 ">
+                {count === 1 ? (
+                  <Number n={396} />
+                ) : count === 2 ? (
+                  <Number n={315} />
+                ) : count === 3 ? (
+                  <Number n={348} />
+                ) : (
+                  <Number n={333} />
+                )}
+              </p>
+              <p className="carInfo1"> mi</p>
+            </Flex>
             <p className="carInfo2">Range (EPA est.)</p>
           </div>
           <div>
-            <p className="carInfo1">1.99 s</p>
+            <Flex justify={"center"} direction={"row"}>
+              <p className="carInfo1">
+                {count === 1 ? (
+                  <Number n={1.96} />
+                ) : count === 2 ? (
+                  <Number n={3.1} />
+                ) : count === 3 ? (
+                  <Number n={2.4} />
+                ) : (
+                  <Number n={3.5} />
+                )}{" "}
+              </p>
+              <p className="carInfo1"> s</p>
+            </Flex>
             <p className="carInfo2">0-60 mph*</p>
           </div>
+
           <div>
-            <p className="carInfo1">200 mph</p>
+            <Flex justify={"center"} direction={"row"}>
+              <p className="carInfo1">
+                {count === 1 ? (
+                  <Number n={261} />
+                ) : count === 2 ? (
+                  <Number n={315} />
+                ) : count === 3 ? (
+                  <Number n={155} />
+                ) : (
+                  <Number n={330} />
+                )}{" "}
+              </p>
+              <p className="carInfo1">mph</p>
+            </Flex>
             <p className="carInfo2">Top Speed†</p>
           </div>
           <div>
-            <p className="carInfo1">1,020 hp</p>
+            <Flex justify={"center"} direction={"row"}>
+              <p className="carInfo1">{<Number n={1020} />} </p>
+              <p className="carInfo1">hp</p>
+            </Flex>
             <p className="carInfo2">Peak Power</p>
           </div>
         </div>
+
         <div
           className={
             count === 1
